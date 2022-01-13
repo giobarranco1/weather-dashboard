@@ -2,7 +2,9 @@ var weatherContainer = document.querySelector("#weather-container");
 var submitButton = document.querySelector("#submit-button");
 var tempEl = document.querySelector(".temp");
 var humidityEl = document.querySelector(".humidity");
-
+var windEl = document.querySelector(".wind")
+var uvEl = document.querySelector(".uv-index")
+var cityEl = document.querySelector(".city");
   function fetchWeather(lat, lon) {
     var requestUrl =
       "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -17,7 +19,7 @@ var humidityEl = document.querySelector(".humidity");
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
+        console.log(data.daily[0]);
   
         // create img url with icon id
         var iconEl = document.createElement("img");
@@ -35,8 +37,15 @@ var humidityEl = document.querySelector(".humidity");
         var humidity = data.current.humidity;
         humidityEl.textContent = "Humidity: " + humidity + "%";
 
+        var windSpeed = data.current.wind_speed;
+        windEl.textContent = "Wind speed: " + windSpeed + "mph";
 
-        console.log(humidity);
+        var uvIndex = data.current.uvi;
+        uvEl.textContent = "UV Index: " + uvIndex;
+
+        for (var i = 0; i < 5; i++){
+            console.log(data.daily[i]);
+        }
 
         
 
@@ -65,6 +74,7 @@ var humidityEl = document.querySelector(".humidity");
           event.preventDefault();
           var search = document.querySelector("#search-id").value;
           getCoords(search);
+          cityEl.textContent = "The weather in " + search + ":";
       })
 
 

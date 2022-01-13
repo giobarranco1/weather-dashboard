@@ -31,6 +31,12 @@ h2.temp {
 .humidity {
     font-size: 2rem;
 }
+.wind {
+    font-size: 2rem;
+}
+.uv-index {
+    font-size: 2rem;
+}
 
 
 
@@ -47,5 +53,4 @@ h2.temp {
     display: flex;
     justify-content: left;
     align-items: center;
-    
 }
